@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: flower_shop_api
+    ports:
+      - '4000:4000'
+    environment:
+      - JWT_SECRET=super_secret_key_change_me_in_production_1234567890
+      - PORT=4000
+      - DATABASE_URL=file:/data/dev.db
+      - FRONTEND_ORIGIN=http://localhost:5173
+    volumes:
+      - db_data:/data
+
+volumes:
+  db_data:
